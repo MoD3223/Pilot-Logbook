@@ -12,13 +12,14 @@ namespace PilotLogbook
 
         public DbSet<PilotID> Pilots { get; set; }
         internal DbSet<Logbook> Logbooks { get; set; }
-        public DbSet<Certifications> Certs { get; set; }
-        public DbSet<Ratings> Rates { get; set; }
+        public DbSet<Certifications> Certifications { get; set; }
+        public DbSet<Ratings> Ratings { get; set; }
+        public DbSet<SyntheticLogbook> SynthethicFlights { get; set; }
+        public DbSet<MedicalCertificates> MedicalCerts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //TODO: Fix this!!
-            if (Preferences.Default.Get("LocalDB","") == "Local")
+            if (MainPage.IsLocal)
             {
                 optionsBuilder.UseSqlite("Data Source=MyDatabase.db");
             }
@@ -27,12 +28,12 @@ namespace PilotLogbook
 
                 try
                 {
-                    optionsBuilder.UseSqlite("Data Source=server_ip_or_domain;Port=port_number;Database=your_database_name;User Id=username;Password=password;");
+                    optionsBuilder.UseSqlite($"Data Source={ExternalDatabaseLogin.DomainName};Port={ExternalDatabaseLogin.PortNumber};Database={ExternalDatabaseLogin.DatabaseName};User Id={ExternalDatabaseLogin.Login};Password={ExternalDatabaseLogin.Password};");
                     //Example: optionsBuilder.UseSqlite("Data Source=myserver.com;Port=5432;Database=mydatabase;User Id=myusername;Password=mypassword;");
                 }
                 catch (Exception)
                 {
-
+                    //Can't connect to database
                     throw;
                 }   
 
@@ -47,6 +48,8 @@ namespace PilotLogbook
             mod.Entity<PilotID>().HasMany(p => p.Logbooks).WithOne(l => l.pilot);
             mod.Entity<PilotID>().HasMany(p => p.Certifications).WithOne(l => l.pilot);
             mod.Entity<PilotID>().HasMany(p => p.Ratings).WithOne(l => l.pilot);
+            mod.Entity<PilotID>().HasMany(p => p.Synths).WithOne(s => s.pilot);
+            mod.Entity<PilotID>().HasMany(p => p.Med).WithOne(m => m.pilot);
         }
     }
 }

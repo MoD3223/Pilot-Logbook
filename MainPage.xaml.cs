@@ -7,10 +7,10 @@ namespace PilotLogbook;
 
 public partial class MainPage : ContentPage
 {
-    //TODO: Move this down
-    public static MyDbContext MyDatabase = new MyDbContext();
+    public static MyDbContext MyDatabase;
     public static int LogbookID;
     public static int RatingID;
+    public static bool IsLocal;
     public MainPage()
 	{
 		InitializeComponent();
@@ -31,6 +31,9 @@ public partial class MainPage : ContentPage
 
     private async void LocalDBBtn_Clicked(object sender, EventArgs e)
     {
+        MyDatabase = null;
+        IsLocal = true;
+        MyDatabase = new MyDbContext();
         if (Preferences.Default.Get("Saved",false))
         {
             Preferences.Default.Set("LocalDB", "Local");
@@ -38,46 +41,7 @@ public partial class MainPage : ContentPage
         MyDatabase.Database.EnsureCreated();
         MyDatabase.SaveChanges();
 
-        //For testing purposes, remove before final product
-        var Test = MyDatabase.Pilots.FirstOrDefault();
-        if (Test == null)
-        {
-            MyDatabase.Pilots.Add(new PilotID() { Login = "Admin", Password = "Admin" });
-        }
-        MyDatabase.SaveChanges();
-        //if (LogbookID == -1)
-        //{
-        //    //TODO: Finish
-        //    //var Logbook = new Logbook { }
-        //    var Check = MyDatabase.Logbooks.Where(l => l.LogbookID == 0).ToList();
-        //    if (Check.Count == 0)
-        //    {
-        //        //List is empty
-        //        throw new Exception("ERROR: Can't add items to database");
-        //    }
-        //    else
-        //    {
-        //        Preferences.Default.Set("LogbookID", MyDatabase.Logbooks.Count());
-        //    }
-        //}
-        //if (RatingID == -1)
-        //{
-        //    //TODO: Finish
-        //    //var Rating = new Ratings { }
-        //    var Check = MyDatabase.Rates.Where(r => r.RatingID == 0).ToList();
-        //    if (Check.Count == 0)
-        //    {
-        //        //List is empty, throw error
-        //        throw new Exception("ERROR: Can't add items to database");
-        //    }
-        //    else
-        //    {
-        //        Preferences.Default.Set("RatingID", MyDatabase.Rates.Count());
-        //    }
-        //}
-
-
-
+        Testing();
 
 
 
@@ -87,10 +51,16 @@ public partial class MainPage : ContentPage
 
     private void ExternalDBBtn_Clicked(object sender, EventArgs e)
     {
+        MyDatabase = null;
+        IsLocal = false;
+        //This should be removed, add it in the database options page since we need to provide login/password for external database
+        MyDatabase = new MyDbContext();
         if (Preferences.Default.Get("Saved", false))
         {
             Preferences.Default.Set("LocalDB", "External");
         }
+
+        //Navigate to database options page so user can input ip, login, pass etc
     }
 
     private void SaveDBChoiceChkB_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -103,6 +73,51 @@ public partial class MainPage : ContentPage
         {
             Preferences.Default.Set("Saved", false);
         }
+    }
+
+    public static void Testing()
+    {
+        //Create
+        try
+        {
+            MyDatabase.Pilots.Add(new PilotID() { Login = "Test", Password = "Test" });
+        }
+        catch (Exception ex)
+        {
+            //Can't add to database
+        }
+
+        //Read
+        var Pilot = MyDatabase.Pilots.First(p => p.Login == "Test");
+        if (Pilot != null)
+        {
+            try
+            {
+                //Update
+                Pilot.Login = "Test2";
+            }
+            catch (Exception)
+            {
+                //Cant update
+                throw;
+            }
+        }
+        else
+        {
+            //Cant read
+        }
+
+        try
+        {
+            //Delete
+            MyDatabase.Pilots.Remove(MyDatabase.Pilots.First(l => l.Login == "Test"));
+        }
+        catch (Exception e)
+        {
+
+            //Cant remove from database
+        }
+        MyDatabase.SaveChanges();
     }
 }
 

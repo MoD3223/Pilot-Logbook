@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PilotLogbook
 {
-    internal class SyntheticLogbook
+    public class SyntheticLogbook
     {
-        //TODO: Add SyntheticLogbook to database
-        DateTime date;
-        SyntheticTrainingDevices type;
-        DateTime TotalTime;
+        public PilotID pilot;
+        public DateTime date;
+        public SyntheticTrainingDevices type;
+        public DateTime TotalTime;
 
 
 

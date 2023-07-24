@@ -11,7 +11,7 @@ namespace PilotLogbook
         public uint RatingID;
         public PilotID pilot { get; set; }
         public DateTime DateOfIssue { get; set; }
-        public string? CustomRating { get; set; }
+        public string CustomRating { get; set; }
 
         //TODO: Complete this
     }
