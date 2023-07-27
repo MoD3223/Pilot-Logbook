@@ -45,6 +45,10 @@ namespace PilotLogbook
             mod.Entity<Certifications>().HasKey(e => e.Number);
             mod.Entity<Logbook>().HasKey(e => e.LogbookID);
             mod.Entity<Ratings>().HasKey(e => e.RatingID);
+            mod.Entity<SyntheticLogbook>().HasKey(s => s.SynthID);
+            mod.Entity<MedicalCertificates>().HasKey(m => m.MedicalID);
+
+
             mod.Entity<PilotID>().HasMany(p => p.Logbooks).WithOne(l => l.pilot);
             mod.Entity<PilotID>().HasMany(p => p.Certifications).WithOne(l => l.pilot);
             mod.Entity<PilotID>().HasMany(p => p.Ratings).WithOne(l => l.pilot);

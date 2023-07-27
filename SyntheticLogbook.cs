@@ -8,6 +8,7 @@ namespace PilotLogbook
 {
     public class SyntheticLogbook
     {
+        public uint SynthID;
         public PilotID pilot;
         public DateTime date;
         public SyntheticTrainingDevices type;

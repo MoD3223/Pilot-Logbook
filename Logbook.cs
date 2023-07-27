@@ -11,7 +11,6 @@ namespace PilotLogbook
 {
     internal class Logbook
     {
-        //TODO: Fix not creating table properly
         public uint LogbookID{ get; set; }
         public PilotID pilot{ get; set; }
         public string? NotesAndEndorsements{ get; set; }
@@ -23,19 +22,19 @@ namespace PilotLogbook
         public string? RouteTo{ get; set; } //ICAO Code, defaults to Unknown
         public DateTime ArrivalTime{ get; set; }
         public TimeSpan FlightDuration{ get; set; } //Total flight time
-        public DateTime? StickTime{ get; set; } //Cant be higher than flight duration
+        public TimeSpan? StickTime{ get; set; } //Cant be higher than flight duration
         public string PilotInCommand{ get; set; } //TODO: All autocomplete of Self
         public string? SecondInCommand{ get; set; }
         public bool CrossCountry{ get; set; }
         public bool? EngineType{ get; set; } //0 - Single engine, 1 - MultiEngine
-        public DateTime? MultiPilotTime{ get; set; }
-        public DateTime? NightFlyingTime{ get; set; }
-        public DateTime? IFRFlyingTime{ get; set; }
+        public TimeSpan? MultiPilotTime{ get; set; }
+        public TimeSpan? NightFlyingTime{ get; set; }
+        public TimeSpan? IFRFlyingTime{ get; set; }
         //Time piloted
-        public DateTime? PIC{ get; set; }
-        public DateTime? CoPilot{ get; set; }
-        public DateTime? Dual{ get; set; }
-        public DateTime? Instructor{ get; set; }
+        public TimeSpan? PIC{ get; set; }
+        public TimeSpan? CoPilot{ get; set; }
+        public TimeSpan? Dual{ get; set; }
+        public TimeSpan? Instructor{ get; set; }
         //Landings
         public uint Day{ get; set; }
         public uint Night{ get; set; }
@@ -52,15 +51,25 @@ namespace PilotLogbook
 
 
 
-        public Logbook(uint lid,PilotID pid, DateTime dept, DateTime arr, uint day = 0, uint night = 0, uint single = 0, uint multi = 0, DateTime date = default, string aircraft = null, string ident = null, string from = null, string to = null, DateTime? stick = null, string pilot = "Self", string second = null, bool cross = false, bool? engine = null, DateTime? dateTimePIC = null, DateTime? copilot = null, DateTime? dual = null, DateTime? ins = null, string? notes = null, DateTime? MultiTime = null, DateTime? NightTime = null, DateTime? IFRTime = null)
+        public Logbook(uint lid,PilotID pid, DateTime dept, DateTime arr, uint day = 0, uint night = 0, uint single = 0, uint multi = 0, DateTime date = default, string aircraft = null, string ident = null, string from = null, string to = null, TimeSpan? stick = null, string pilot = "Self", string second = null, bool cross = false, bool? engine = null, TimeSpan? dateTimePIC = null, TimeSpan? copilot = null, TimeSpan? dual = null, TimeSpan? ins = null, string? notes = null, TimeSpan? MultiTime = null, TimeSpan? NightTime = null, TimeSpan? IFRTime = null)
         {
+            FlightDuration = ArrivalTime - DepartureTime;
+
+            if (stick > FlightDuration || MultiTime > FlightDuration || NightTime > FlightDuration || IFRTime > FlightDuration || dateTimePIC > FlightDuration || copilot > FlightDuration || dual > FlightDuration || ins > FlightDuration)
+            {
+                //TODO: Add error
+                //Error, none of these values can be higher than Flight Duration
+            }
+
+
+
             if (date == default)
             {
                 Date = DateTime.UtcNow;
             }
             else
             {
-                Date = date;
+                Date = date.ToUniversalTime();
             }
             LogbookID = lid;
             this.pilot = pid;
@@ -71,7 +80,6 @@ namespace PilotLogbook
             AircraftIdent = ident;
             RouteFrom = from;
             RouteTo = to;
-            FlightDuration = ArrivalTime - DepartureTime;
             StickTime = stick;
             PilotInCommand = pilot;
             SecondInCommand = second;
@@ -88,6 +96,8 @@ namespace PilotLogbook
             Night = night;
             SingleEngineLand = single;
             MultiEngineLand = multi;
+
+
 
         }
     }

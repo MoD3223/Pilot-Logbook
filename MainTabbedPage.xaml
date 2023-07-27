@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PilotLogbook.MainTabbedPage">
+    <ContentPage Title="Logbooks" BackgroundColor="LightBlue">
+        <Label Text="Content for Tab 1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    </ContentPage>
+
+    <ContentPage Title="Ratings" BackgroundColor="LightGreen">
+        <Label Text="Content for Tab 2" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    </ContentPage>
+
+    <ContentPage Title="Certifications" BackgroundColor="LightPink">
+        <Label Text="Content for Tab 3" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    </ContentPage>
+
+    <ContentPage Title="Synthetic FFlights">
+        <Label Text="Test0"/>
+    </ContentPage>
+    
+    <ContentPage Title="Medical Certificates">
+        <Label Text="Test"/>
+    </ContentPage>
+</TabbedPage>

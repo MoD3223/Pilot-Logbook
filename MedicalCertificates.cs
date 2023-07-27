@@ -8,6 +8,7 @@ namespace PilotLogbook
 {
     public class MedicalCertificates
     {
+        public uint MedicalID;
         public PilotID pilot;
         public DateTime MedicalDate;
         public string MedicalClass;

@@ -8,24 +8,23 @@ namespace PilotLogbook;
 public partial class MainPage : ContentPage
 {
     public static MyDbContext MyDatabase;
-    public static int LogbookID;
-    public static int RatingID;
+    public static uint? LogbookID;
+    public static uint? RatingID;
+    public static uint? SynthID;
+    public static uint? MedicalID;
     public static bool IsLocal;
     public MainPage()
 	{
 		InitializeComponent();
-        LogbookID = Preferences.Default.Get("LogbookID", -1);
-        RatingID = Preferences.Default.Get("RatingID", -1);
-
 
 
         if (Preferences.Default.Get("LocalDB", "") == "Local")
         {
-            LocalDBBtn_Clicked(this, new EventArgs());
+            LocalDBBtn_Clicked(this, EventArgs.Empty);
         }
         else if (Preferences.Default.Get("LocalDB", "") == "External") 
         {
-            ExternalDBBtn_Clicked(this, new EventArgs());
+            ExternalDBBtn_Clicked(this, EventArgs.Empty);
         }
     }
 
@@ -38,18 +37,17 @@ public partial class MainPage : ContentPage
         {
             Preferences.Default.Set("LocalDB", "Local");
         }
+        else
+        {
+            Preferences.Default.Set("LocalDB", "");
+        }
         MyDatabase.Database.EnsureCreated();
         MyDatabase.SaveChanges();
-
         Testing();
-
-
-
-
-        await Navigation.PushAsync(new LocalLoginDB());
+        await Navigation.PushAsync(new LoginDB());
     }
 
-    private void ExternalDBBtn_Clicked(object sender, EventArgs e)
+    private async void ExternalDBBtn_Clicked(object sender, EventArgs e)
     {
         MyDatabase = null;
         IsLocal = false;
@@ -59,8 +57,12 @@ public partial class MainPage : ContentPage
         {
             Preferences.Default.Set("LocalDB", "External");
         }
+        else
+        {
+            Preferences.Default.Set("LocalDB", "");
+        }
 
-        //Navigate to database options page so user can input ip, login, pass etc
+        await Navigation.PushAsync(new ExternalDatabaseLogin());
     }
 
     private void SaveDBChoiceChkB_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -81,6 +83,7 @@ public partial class MainPage : ContentPage
         try
         {
             MyDatabase.Pilots.Add(new PilotID() { Login = "Test", Password = "Test" });
+            MyDatabase.SaveChanges();
         }
         catch (Exception ex)
         {
@@ -94,7 +97,8 @@ public partial class MainPage : ContentPage
             try
             {
                 //Update
-                Pilot.Login = "Test2";
+                Pilot.Password = "Test2";
+                MyDatabase.SaveChanges();
             }
             catch (Exception)
             {
@@ -110,7 +114,7 @@ public partial class MainPage : ContentPage
         try
         {
             //Delete
-            MyDatabase.Pilots.Remove(MyDatabase.Pilots.First(l => l.Login == "Test"));
+            MyDatabase.Pilots.Remove(Pilot);
         }
         catch (Exception e)
         {

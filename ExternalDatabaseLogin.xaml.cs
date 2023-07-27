@@ -9,6 +9,7 @@ public partial class ExternalDatabaseLogin : ContentPage
 	public static string Password;
 	public ExternalDatabaseLogin()
 	{
+		//TODO: Add fields with login/password etc then Navigate to LocalLoginDB
 		InitializeComponent();
 	}
 }
