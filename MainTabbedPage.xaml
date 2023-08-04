@@ -2,23 +2,93 @@
 <TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PilotLogbook.MainTabbedPage">
-    <ContentPage Title="Logbooks" BackgroundColor="LightBlue">
-        <Label Text="Content for Tab 1" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    <ContentPage Title="Logbooks" x:Name="LogbookTabbedPage">
+        <Grid x:Name="MainGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Label Grid.Row="0" Grid.Column="0" Text=" ID " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="1" Text=" Data " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="2" Text=" Make/Model " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="3" Text=" Ident " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="4" Text=" Route FROM " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="5" Text=" Route TO " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="6" Text=" Departure date " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="7" Text=" Arrival date " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="8" Text=" Flight duration " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="9" Text=" Pilot in command " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="10" Text=" Second in command " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="11" Text=" Day landings " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="12" Text=" Night landings " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="13" Text=" Single-engine landings " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="14" Text=" Multi-engine landings " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="15" Text=" Engine type " HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="16" Text=" Stick time " HorizontalTextAlignment="Center"/>
+            <!--TODO: Finish this-->
+
+        </Grid>
     </ContentPage>
 
-    <ContentPage Title="Ratings" BackgroundColor="LightGreen">
-        <Label Text="Content for Tab 2" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    <ContentPage Title="Ratings">
+        <ContentPage.Content>
+            <Grid x:Name="RatingsGrid" ColumnDefinitions="*,*,*" RowDefinitions="Auto">
+                <Label Text="Content for Tab 2" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            </Grid>
+        </ContentPage.Content>
+
+
+
+
     </ContentPage>
 
     <ContentPage Title="Certifications" BackgroundColor="LightPink">
-        <Label Text="Content for Tab 3" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <ContentPage.Content>
+            <Grid x:Name="CertGrid">
+                <Label Text="Content for Tab 3" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            </Grid>
+        </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="Synthetic FFlights">
-        <Label Text="Test0"/>
+    <ContentPage Title="Synthetic Flights">
+        <ContentPage.Content>
+            <Grid x:Name="SynthGrid">
+                
+            </Grid>
+        </ContentPage.Content>
     </ContentPage>
-    
+
     <ContentPage Title="Medical Certificates">
-        <Label Text="Test"/>
+        <ContentPage.Content>
+            <Grid x:Name="MedGrid">
+                
+            </Grid>
+        </ContentPage.Content>
     </ContentPage>
 </TabbedPage>

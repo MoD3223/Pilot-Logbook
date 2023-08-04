@@ -5,8 +5,16 @@
              Title="CreateNewUser">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Login (Unique)"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Entry x:Name="eLogin"/>
+        <Label Text="Password (Optional)" HorizontalOptions="Center"/>
+        <Entry x:Name="ePassword"/>
+        <Label Text="Address (Optional)" HorizontalOptions="Center"/>
+        <Entry x:Name="eAddress"/>
+        <Label Text="Phone number (Optional)" HorizontalOptions="Center"/>
+        <Entry x:Name="ePhone" Keyboard="Telephone"/>
+        <Button x:Name="btnInput" Text="Add user" HorizontalOptions="Center" Clicked="btnInput_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

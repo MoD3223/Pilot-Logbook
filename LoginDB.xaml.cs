@@ -24,19 +24,21 @@ public partial class LoginDB : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e, PilotID pid)
     {
+        MainPage.LogbookID = MainPage.MyDatabase.Logbooks.OrderBy(l => l.LogbookID).LastOrDefault()?.LogbookID;
+        MainPage.RatingID = MainPage.MyDatabase.Ratings.OrderBy(r => r.RatingID).LastOrDefault()?.RatingID;
+        MainPage.SynthID = MainPage.MyDatabase.SynthethicFlights.OrderBy(s => s.SynthID).LastOrDefault()?.SynthID;
+        MainPage.MedicalID = MainPage.MyDatabase.MedicalCerts.OrderBy(m => m.MedicalID).LastOrDefault()?.MedicalID;
+
+        MainPage.LogbookID = MainPage.LogbookID == null ? 1 : MainPage.LogbookID++;
+        MainPage.RatingID = MainPage.RatingID == null ? 1 : MainPage.RatingID++;
+        MainPage.SynthID = MainPage.SynthID == null ? 1 : MainPage.SynthID++;
+        MainPage.MedicalID = MainPage.MedicalID == null ? 1 : MainPage.MedicalID;
+
+
+
+
         if (pid.Password == null)
         {
-            MainPage.LogbookID = MainPage.MyDatabase.Logbooks.LastOrDefault().LogbookID;
-            MainPage.RatingID = MainPage.MyDatabase.Ratings.LastOrDefault().RatingID;
-            MainPage.SynthID = MainPage.MyDatabase.SynthethicFlights.LastOrDefault().SynthID;
-            MainPage.MedicalID = MainPage.MyDatabase.MedicalCerts.LastOrDefault().MedicalID;
-
-            MainPage.LogbookID = MainPage.LogbookID == null ? 1 : MainPage.LogbookID++;
-            MainPage.RatingID = MainPage.RatingID == null ? 1 : MainPage.RatingID++;
-            MainPage.SynthID = MainPage.SynthID == null ? 1 : MainPage.SynthID++;
-            MainPage.MedicalID = MainPage.MedicalID == null ? 1 : MainPage.MedicalID;
-
-
             await Navigation.PushAsync(new MainTabbedPage(pid));
         }
         else

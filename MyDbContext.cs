@@ -21,7 +21,12 @@ namespace PilotLogbook
         {
             if (MainPage.IsLocal)
             {
+                #if WINDOWS
                 optionsBuilder.UseSqlite("Data Source=MyDatabase.db");
+                #endif
+                #if ANDROID
+                optionsBuilder.UseSqlite($"Data Source={FileSystem.AppDataDirectory}/MyDatabase.db");
+                #endif
             }
             else
             {

@@ -30,7 +30,7 @@ namespace PilotLogbook
 
         }
 
-        public PilotID(string login, string pass, int? phone = null, string? address = null)
+        public PilotID(string login, string? pass, int? phone = null, string? address = null)
         {
             Login = login;
             Password = pass;
