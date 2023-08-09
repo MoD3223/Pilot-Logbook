@@ -17,8 +17,14 @@ public partial class LocalDBPassword : ContentPage
 		{
             Tries = 0;
             PasswordEntry.Text = "";
-            Navigation.PushAsync(new MainTabbedPage(pilot));
+#if WINDOWS
+			Navigation.PushAsync(new MainTabbedPage(pilot));
 			//TODO: Fix unhandled exception
+#endif
+
+#if ANDROID
+			Navigation.PushAsync(new LogbookAndroid(pilot));
+#endif
 		}
 		else
 		{

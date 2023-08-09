@@ -51,8 +51,8 @@ public partial class MainPage : ContentPage
     {
         MyDatabase = null;
         IsLocal = false;
-        //This should be removed, add it in the database options page since we need to provide login/password for external database
-        MyDatabase = new MyDbContext();
+        //TODO: This should be removed, add it in the database options page since we need to provide login/password for external database
+        //MyDatabase = new MyDbContext();
         if (Preferences.Default.Get("Saved", false))
         {
             Preferences.Default.Set("LocalDB", "External");

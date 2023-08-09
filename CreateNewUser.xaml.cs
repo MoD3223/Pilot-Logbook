@@ -19,6 +19,7 @@ public partial class CreateNewUser : ContentPage
             MainPage.MyDatabase.Pilots.Add(new PilotID() { Login = eLogin.Text, Password = pass, Address = address, PhoneNumber = phoneInt });
             MainPage.MyDatabase.SaveChanges();
 			Navigation.PushAsync(new LoginDB());
+			Navigation.RemovePage(this);
         }
 		catch (Exception)
 		{

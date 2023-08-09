@@ -96,9 +96,6 @@ namespace PilotLogbook
             Night = night;
             SingleEngineLand = single;
             MultiEngineLand = multi;
-
-
-
         }
     }
 }

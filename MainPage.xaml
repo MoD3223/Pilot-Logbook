@@ -16,14 +16,14 @@
                 HorizontalOptions="Center"/>
 
             <Label
-                Text="Welcome to your own logbook, choose whether you want to connect to external database or create a local one"
+                Text="Welcome to your own logbook, choose whether you want to connect to external database or use a local one"
                 SemanticProperties.HeadingLevel="Level2"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
             <Button
                 x:Name="LocalDBBtn"
-                Text="Create Local Database"
+                Text="Use Local Database"
                 Clicked="LocalDBBtn_Clicked"
                 HorizontalOptions="CenterAndExpand" />
 
