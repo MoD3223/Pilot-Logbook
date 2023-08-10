@@ -1,4 +1,3 @@
-
 namespace PilotLogbook;
 
 public partial class MainTabbedPage : TabbedPage
@@ -14,10 +13,12 @@ public partial class MainTabbedPage : TabbedPage
     {
         InitializeComponent();
         id1 = ID;
-        //List<Grid> AllTabbedGrids = new List<Grid>() { MainGrid, RatingsGrid, CertGrid, SynthGrid, MedGrid };
         CurrentPageChanged += OnCurrentPageChanged;
         LoadLogbooks();
         LoadRatings();
+        LoadCerts();
+        LoadSynth();
+        LoadMed();
     }
 
     void LoadLogbooks()
@@ -202,20 +203,20 @@ public partial class MainTabbedPage : TabbedPage
 
         AddNewLogbookEntry = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Add new entry" };
         AddNewLogbookEntry.Clicked += AddNewLogbookEntry_Clicked;
-        MainGrid.SetRow(AddNewLogbookEntry, 25);
+        MainGrid.SetRow(AddNewLogbookEntry, row+1);
         MainGrid.SetColumn(AddNewLogbookEntry, 0);
         MainGrid.Children.Add(AddNewLogbookEntry);
 
                 //< Button x: Name = "AddNewLogbookEntry" Grid.Row = "1" Grid.Column = "1" Text = "Add new entry" Clicked = "AddNewLogbookEntry_Clicked" />
         delete = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Delete", IsVisible = false };
         delete.Clicked += (s, e) => Delete_Clicked(MainGrid);
-        MainGrid.SetRow(delete, 25);
+        MainGrid.SetRow(delete, row+1);
         MainGrid.SetColumn(delete, 1);
         MainGrid.Children.Add(delete);
 
         MobileView = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Switch to mobile view", IsVisible = false };
         MobileView.Clicked += (s, e) => MobileView_Clicked(MainGrid);
-        MainGrid.SetRow(MobileView, 25);
+        MainGrid.SetRow(MobileView, row+1);
         MainGrid.SetColumn(MobileView, 2);
         MainGrid.Children.Add(MobileView);
 
@@ -226,7 +227,10 @@ public partial class MainTabbedPage : TabbedPage
         var RatingList = new List<Ratings>();
         foreach (var item in MainPage.MyDatabase.Ratings)
         {
-            RatingList.Add(item);
+            if (item.pilot == id1)
+            {
+                RatingList.Add(item);
+            }
         }
         TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += (s, e) => OnTapped(s, e, this.RatingsGrid);
@@ -268,9 +272,194 @@ public partial class MainTabbedPage : TabbedPage
                 lbl.HorizontalTextAlignment = TextAlignment.Center;
                 lbl.GestureRecognizers.Add(tap);
                 RatingsGrid.Children.Add(lbl);
+                //TODO: Add buttons
             }
 
         }
+    }
+
+    void LoadCerts()
+    {
+        var CertList = new List<Certifications>();
+        foreach (var item in MainPage.MyDatabase.Certifications)
+        {
+            if (item.pilot == id1)
+            {
+                CertList.Add(item);
+            }
+        }
+        TapGestureRecognizer tap = new TapGestureRecognizer();
+        tap.Tapped += (s, e) => OnTapped(s, e, this.CertGrid);
+        int row = 0;
+        foreach (var item in CertList)
+        {
+            row++;
+            CertGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
+            for (int i = 0; i < 3; i++)
+            {
+                Border br = new Border();
+                br.StrokeThickness = 1;
+                CertGrid.SetRow(br, row);
+                CertGrid.SetColumn(br, i);
+                CertGrid.Children.Add(br);
+                Label lbl = new Label();
+                switch (i)
+                {
+                    case 0:
+                        lbl.Text = item.Number.ToString();
+                        CertGrid.SetRow(lbl, row);
+                        CertGrid.SetColumn(lbl, i);
+                        break;
+                    case 1:
+                        if (item.RecievedGrade == Certifications.Grade.Custom)
+                        {
+                            lbl.Text = item.RecievedGrade.ToString();
+                        }
+                        else
+                        {
+                            lbl.Text = item.CustomGrade;
+                        }
+                        CertGrid.SetRow(lbl, row);
+                        CertGrid.SetColumn(lbl, i);
+                        break;
+                    case 2:
+                        lbl.Text = item.DateOfIssue.ToString();
+                        CertGrid.SetRow(lbl, row);
+                        CertGrid.SetColumn(lbl, i);
+                        break;
+                    default:
+                        break;
+                }
+                lbl.HorizontalTextAlignment = TextAlignment.Center;
+                lbl.GestureRecognizers.Add(tap);
+                CertGrid.Children.Add(lbl);
+                //TODO: Add buttons
+            }
+        }
+    }
+
+    void LoadSynth()
+    {
+        var SynthList = new List<SyntheticLogbook>();
+        foreach (var item in MainPage.MyDatabase.SynthethicFlights)
+        {
+            if (item.pilot == id1)
+            {
+                SynthList.Add(item);
+            }
+        }
+        TapGestureRecognizer tap = new TapGestureRecognizer();
+        tap.Tapped += (s, e) => OnTapped(s, e, this.SynthGrid);
+        int row = 0;
+        foreach (var item in SynthList)
+        {
+            row++;
+            SynthGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
+            for (int i = 0; i < 4; i++)
+            {
+                Border br = new Border();
+                br.StrokeThickness = 1;
+                SynthGrid.SetRow(br, row);
+                SynthGrid.SetColumn(br, i);
+                SynthGrid.Children.Add(br);
+                Label lbl = new Label();
+                switch (i)
+                {
+                    case 0:
+                        lbl.Text = item.SynthID.ToString();
+                        SynthGrid.SetRow(lbl, row);
+                        SynthGrid.SetColumn(lbl, i);
+                        break;
+                    case 1:
+                        lbl.Text = item.type.ToString();
+                        SynthGrid.SetRow(lbl, row);
+                        SynthGrid.SetColumn(lbl, i);
+                        break;
+                    case 2:
+                        lbl.Text = item.TotalTime.ToString();
+                        SynthGrid.SetRow(lbl, row);
+                        SynthGrid.SetColumn(lbl, i);
+                        break;
+                    case 3:
+                        lbl.Text = item.date.ToString();
+                        SynthGrid.SetRow(lbl, row);
+                        SynthGrid.SetColumn(lbl, i);
+                        break;
+                    default:
+                        break;
+                }
+                lbl.HorizontalTextAlignment = TextAlignment.Center;
+                lbl.GestureRecognizers.Add(tap);
+                SynthGrid.Children.Add(lbl);
+                //TODO: Add buttons
+            }
+
+        }
+    }
+
+    void LoadMed()
+    {
+        var MedList = new List<MedicalCertificates>();
+        foreach (var item in MainPage.MyDatabase.MedicalCerts)
+        {
+            if (item.pilot == id1)
+            {
+                MedList.Add(item);
+            }
+        }
+
+        TapGestureRecognizer tap = new TapGestureRecognizer();
+        tap.Tapped += (s, e) => OnTapped(s, e, this.MedGrid);
+        int row = 0;
+
+        foreach (var item in MedList)
+        {
+            row++;
+            MedGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
+            for (int i = 0; i < 5; i++)
+            {
+                Border br = new Border();
+                br.StrokeThickness = 1;
+                MedGrid.SetRow(br, row);
+                MedGrid.SetColumn(br, i);
+                MedGrid.Children.Add(br);
+                Label lbl = new Label();
+                switch (i)
+                {
+                    case 0:
+                        lbl.Text = item.MedicalID.ToString();
+                        MedGrid.SetRow(lbl, row);
+                        MedGrid.SetColumn(lbl, i);
+                        break;
+                    case 1:
+                        lbl.Text = item.MedicalDate.ToString();
+                        MedGrid.SetRow(lbl, row);
+                        MedGrid.SetColumn(lbl, i);
+                        break;
+                    case 2:
+                        lbl.Text = item.MedicalClass;
+                        MedGrid.SetRow(lbl, row);
+                        MedGrid.SetColumn(lbl, i);
+                        break;
+                    case 3:
+                        lbl.Text = item.FlightDate.ToString();
+                        MedGrid.SetRow(lbl, row);
+                        MedGrid.SetColumn(lbl, i);
+                        break;
+                    case 4:
+                        lbl.Text = item.InstrumentDate.ToString();
+                        MedGrid.SetRow(lbl, row);
+                        MedGrid.SetColumn(lbl, i);
+                        break;
+                    default:
+                        break;
+                }
+                lbl.HorizontalTextAlignment = TextAlignment.Center;
+                lbl.GestureRecognizers.Add(tap);
+                MedGrid.Children.Add(lbl);
+            }
+        }
+        //TODO: Finish this
     }
 
     void OnTapped(object s, TappedEventArgs e, Grid grid)
@@ -387,7 +576,7 @@ public partial class MainTabbedPage : TabbedPage
         }
         else
         {
-            //Display error
+            Navigation.PushAsync(new ErrorPage());
         }
     }
 
@@ -420,7 +609,7 @@ public partial class MainTabbedPage : TabbedPage
         }
         else
         {
-            //Display error
+            Navigation.PushAsync(new ErrorPage());
         }
     }
 
@@ -453,16 +642,34 @@ public partial class MainTabbedPage : TabbedPage
 
         if (currentPage == LogbookTabbedPage)
         {
-            MainGrid.SetRow(delete, 25);
+            MainGrid.SetRow(delete, Int32.MaxValue);
             MainGrid.SetColumn(delete, 1);
             MainGrid.Children.Add(delete);
 
         }
         else if (currentPage == RatingsTabbedPage)
         {
-            RatingsGrid.SetRow(delete, 25);
+            RatingsGrid.SetRow(delete, Int32.MaxValue);
             RatingsGrid.SetColumn(delete, 1);
             RatingsGrid.Children.Add(delete);
+        }
+        else if (currentPage == CertsTabbedPage)
+        {
+            CertGrid.SetRow(delete, Int32.MaxValue);
+            CertGrid.SetColumn(delete, 1);
+            CertGrid.Children.Add(delete);
+        }
+        else if (currentPage == SynthTabbedPage)
+        {
+            SynthGrid.SetRow(delete, Int32.MaxValue);
+            SynthGrid.SetColumn(delete, 1);
+            SynthGrid.Children.Add(delete);
+        }
+        else if (currentPage == MedicalTabbedPage)
+        {
+            MedGrid.SetRow(delete, Int32.MaxValue);
+            MedGrid.SetColumn(delete, 1);
+            MedGrid.Children.Add(delete);
         }
     }
 

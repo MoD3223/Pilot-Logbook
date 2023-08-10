@@ -8,7 +8,7 @@ namespace PilotLogbook
 {
     public class Ratings
     {
-        public uint RatingID;
+        public uint RatingID { get; set; }
         public PilotID pilot { get; set; }
         public DateTime DateOfIssue { get; set; }
         public string CustomRating { get; set; }

@@ -78,7 +78,7 @@
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="Certifications" BackgroundColor="LightPink">
+    <ContentPage Title="Certifications" x:Name="CertsTabbedPage">
         <ContentPage.Content>
             <ScrollView Orientation="Both">
                 <Grid x:Name="CertGrid">
@@ -88,7 +88,7 @@
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="Synthetic Flights">
+    <ContentPage Title="Synthetic Flights" x:Name="SynthTabbedPage">
         <ContentPage.Content>
             <ScrollView Orientation="Both">
                 <Grid x:Name="SynthGrid">
@@ -98,7 +98,7 @@
         </ContentPage.Content>
     </ContentPage>
 
-    <ContentPage Title="Medical Certificates">
+    <ContentPage Title="Medical Certificates" x:Name="MedicalTabbedPage">
         <ContentPage.Content>
             <ScrollView Orientation="Both">
                 <Grid x:Name="MedGrid">

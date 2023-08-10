@@ -71,6 +71,9 @@
 	  <MauiXaml Update="CreateNewUser.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ErrorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="ExternalDatabaseLogin.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
