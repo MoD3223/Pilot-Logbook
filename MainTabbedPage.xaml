@@ -71,8 +71,10 @@
     <ContentPage Title="Ratings" x:Name="RatingsTabbedPage">
         <ContentPage.Content>
             <ScrollView Orientation="Both">
-                <Grid x:Name="RatingsGrid" ColumnDefinitions="*,*,*" RowDefinitions="Auto">
-                    <Label Text="Content for Tab 2" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <Grid x:Name="RatingsGrid" ColumnDefinitions="*,*,*">
+                    <Label Grid.Row="0" Grid.Column="0" Text=" ID " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text=" Date " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text=" Rating " HorizontalTextAlignment="Center"/>
                 </Grid>
             </ScrollView>
         </ContentPage.Content>
@@ -81,8 +83,10 @@
     <ContentPage Title="Certifications" x:Name="CertsTabbedPage">
         <ContentPage.Content>
             <ScrollView Orientation="Both">
-                <Grid x:Name="CertGrid">
-                    <Label Text="Content for Tab 3" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <Grid x:Name="CertGrid" ColumnDefinitions="*,*,*">
+                    <Label Grid.Row="0" Grid.Column="0" Text=" Certification number " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text=" Recieved grade " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text=" Date of issue " HorizontalTextAlignment="Center"/>
                 </Grid>
             </ScrollView>
         </ContentPage.Content>
@@ -91,8 +95,11 @@
     <ContentPage Title="Synthetic Flights" x:Name="SynthTabbedPage">
         <ContentPage.Content>
             <ScrollView Orientation="Both">
-                <Grid x:Name="SynthGrid">
-                    
+                <Grid x:Name="SynthGrid" ColumnDefinitions="*,*,*,*">
+                    <Label Grid.Row="0" Grid.Column="0" Text=" ID " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text=" Type of flight " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text=" Total time " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text=" Date " HorizontalTextAlignment="Center"/>
                 </Grid>
             </ScrollView>
         </ContentPage.Content>
@@ -101,8 +108,12 @@
     <ContentPage Title="Medical Certificates" x:Name="MedicalTabbedPage">
         <ContentPage.Content>
             <ScrollView Orientation="Both">
-                <Grid x:Name="MedGrid">
-                    
+                <Grid x:Name="MedGrid" ColumnDefinitions="*,*,*,*,*">
+                    <Label Grid.Row="0" Grid.Column="0" Text=" ID " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text=" Date " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text=" Class " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text=" Flight date " HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="4" Text=" Instrumental flight date " HorizontalOptions="Center"/>
                 </Grid>
             </ScrollView>
         </ContentPage.Content>

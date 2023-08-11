@@ -6,6 +6,10 @@ public partial class MainTabbedPage : TabbedPage
     bool visible;
     bool reversed;
     Button AddNewLogbookEntry;
+    Button AddNewRatingsEntry;
+    Button AddNewCertsEntry;
+    Button AddNewSynthEntry;
+    Button AddNewMedicalEntry;
     Button delete;
     Button MobileView;
     PilotID id1;
@@ -207,7 +211,6 @@ public partial class MainTabbedPage : TabbedPage
         MainGrid.SetColumn(AddNewLogbookEntry, 0);
         MainGrid.Children.Add(AddNewLogbookEntry);
 
-                //< Button x: Name = "AddNewLogbookEntry" Grid.Row = "1" Grid.Column = "1" Text = "Add new entry" Clicked = "AddNewLogbookEntry_Clicked" />
         delete = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Delete", IsVisible = false };
         delete.Clicked += (s, e) => Delete_Clicked(MainGrid);
         MainGrid.SetRow(delete, row+1);
@@ -234,12 +237,14 @@ public partial class MainTabbedPage : TabbedPage
         }
         TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += (s, e) => OnTapped(s, e, this.RatingsGrid);
+        RatingsGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
+        RatingsGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
         int row = 0;
         foreach (var item in RatingList)
         {
             row++;
             RatingsGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 //Adding border
                 Border br = new Border();
@@ -269,14 +274,23 @@ public partial class MainTabbedPage : TabbedPage
                     default:
                         break;
                 }
+                lbl.HorizontalOptions = LayoutOptions.FillAndExpand;
                 lbl.HorizontalTextAlignment = TextAlignment.Center;
                 lbl.GestureRecognizers.Add(tap);
                 RatingsGrid.Children.Add(lbl);
-                //TODO: Add buttons
             }
 
         }
+        AddNewRatingsEntry = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Add new entry" };
+        AddNewRatingsEntry.Clicked += AddNewRatingsEntry_Clicked;
+        RatingsGrid.SetRow(AddNewRatingsEntry, row + 1);
+        RatingsGrid.SetColumn(AddNewRatingsEntry, 0);
+        RatingsGrid.Children.Add(AddNewRatingsEntry);
+
+
     }
+
+    
 
     void LoadCerts()
     {
@@ -290,6 +304,8 @@ public partial class MainTabbedPage : TabbedPage
         }
         TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += (s, e) => OnTapped(s, e, this.CertGrid);
+        CertGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
+        CertGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
         int row = 0;
         foreach (var item in CertList)
         {
@@ -333,9 +349,13 @@ public partial class MainTabbedPage : TabbedPage
                 lbl.HorizontalTextAlignment = TextAlignment.Center;
                 lbl.GestureRecognizers.Add(tap);
                 CertGrid.Children.Add(lbl);
-                //TODO: Add buttons
             }
         }
+        AddNewCertsEntry = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Add new entry" };
+        AddNewCertsEntry.Clicked += AddNewCertsEntry_Clicked;
+        CertGrid.SetRow(AddNewCertsEntry, row + 1);
+        CertGrid.SetColumn(AddNewCertsEntry, 0);
+        CertGrid.Children.Add(AddNewCertsEntry);
     }
 
     void LoadSynth()
@@ -350,6 +370,8 @@ public partial class MainTabbedPage : TabbedPage
         }
         TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += (s, e) => OnTapped(s, e, this.SynthGrid);
+        SynthGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
+        SynthGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
         int row = 0;
         foreach (var item in SynthList)
         {
@@ -391,10 +413,14 @@ public partial class MainTabbedPage : TabbedPage
                 lbl.HorizontalTextAlignment = TextAlignment.Center;
                 lbl.GestureRecognizers.Add(tap);
                 SynthGrid.Children.Add(lbl);
-                //TODO: Add buttons
             }
-
         }
+
+        AddNewSynthEntry = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Add new entry" };
+        AddNewSynthEntry.Clicked += AddNewSynthEntry_Clicked;
+        SynthGrid.SetRow(AddNewSynthEntry, row + 1);
+        SynthGrid.SetColumn(AddNewSynthEntry, 0);
+        SynthGrid.Children.Add(AddNewSynthEntry);
     }
 
     void LoadMed()
@@ -410,6 +436,8 @@ public partial class MainTabbedPage : TabbedPage
 
         TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += (s, e) => OnTapped(s, e, this.MedGrid);
+        MedGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
+        MedGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
         int row = 0;
 
         foreach (var item in MedList)
@@ -459,7 +487,11 @@ public partial class MainTabbedPage : TabbedPage
                 MedGrid.Children.Add(lbl);
             }
         }
-        //TODO: Finish this
+        AddNewMedicalEntry = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Add new entry" };
+        AddNewMedicalEntry.Clicked += AddNewMedicalEntry_Clicked;
+        MedGrid.SetRow(AddNewMedicalEntry, row + 1);
+        MedGrid.SetColumn(AddNewMedicalEntry, 0);
+        MedGrid.Children.Add(AddNewMedicalEntry);
     }
 
     void OnTapped(object s, TappedEventArgs e, Grid grid)
@@ -520,6 +552,7 @@ public partial class MainTabbedPage : TabbedPage
     void ShowButtons()
     {
         AddNewLogbookEntry.BackgroundColor = Colors.White;
+        AddNewRatingsEntry.BackgroundColor = Colors.White;
         if (visible)
         {
             delete.IsVisible = true;
@@ -675,9 +708,28 @@ public partial class MainTabbedPage : TabbedPage
 
     private void AddNewLogbookEntry_Clicked(object sender, EventArgs e)
     {
-
+        Navigation.PushAsync(new NewLogbookEntry(id1));
     }
 
+    private void AddNewRatingsEntry_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new NewRatingsEntry(id1));
+    }
+
+    private void AddNewCertsEntry_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new NewCertsEntry(id1));
+    }
+
+    private void AddNewSynthEntry_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new NewSynthEntry(id1));
+    }
+
+    private void AddNewMedicalEntry_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new NewMedicalEntry(id1));
+    }
 
 
     protected override bool OnBackButtonPressed()
