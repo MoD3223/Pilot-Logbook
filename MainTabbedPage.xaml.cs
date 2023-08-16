@@ -327,7 +327,7 @@ public partial class MainTabbedPage : TabbedPage
                         CertGrid.SetColumn(lbl, i);
                         break;
                     case 1:
-                        if (item.RecievedGrade == Certifications.Grade.Custom)
+                        if (item.RecievedGrade != Certifications.Grade.Other)
                         {
                             lbl.Text = item.RecievedGrade.ToString();
                         }
@@ -553,6 +553,9 @@ public partial class MainTabbedPage : TabbedPage
     {
         AddNewLogbookEntry.BackgroundColor = Colors.White;
         AddNewRatingsEntry.BackgroundColor = Colors.White;
+        AddNewCertsEntry.BackgroundColor = Colors.White;
+        AddNewMedicalEntry.BackgroundColor = Colors.White;
+        AddNewSynthEntry.BackgroundColor = Colors.White;
         if (visible)
         {
             delete.IsVisible = true;
@@ -713,31 +716,33 @@ public partial class MainTabbedPage : TabbedPage
 
     private void AddNewRatingsEntry_Clicked(object sender, EventArgs e)
     {
+        CurrentPage = Children[0]; //REQUIRED!!!!
         Navigation.PushAsync(new NewRatingsEntry(id1));
     }
 
     private void AddNewCertsEntry_Clicked(object sender, EventArgs e)
     {
+        CurrentPage = Children[0];
         Navigation.PushAsync(new NewCertsEntry(id1));
     }
 
     private void AddNewSynthEntry_Clicked(object sender, EventArgs e)
     {
+        CurrentPage = Children[0];
         Navigation.PushAsync(new NewSynthEntry(id1));
     }
 
     private void AddNewMedicalEntry_Clicked(object sender, EventArgs e)
     {
+        CurrentPage = Children[0];
         Navigation.PushAsync(new NewMedicalEntry(id1));
     }
 
 
     protected override bool OnBackButtonPressed()
     {
-        Navigation.PopAsync();
-        Navigation.PopAsync();
-        Navigation.RemovePage(this);
+        CurrentPage = Children[0];
+        Navigation.PopToRootAsync();
         return true;
     }
-
 }

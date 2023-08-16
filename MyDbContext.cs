@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PilotLogbook
 {
@@ -38,7 +33,7 @@ namespace PilotLogbook
                 }
                 catch (Exception)
                 {
-                    //Can't connect to database
+                    //TODO: Give some sort of error
                     throw;
                 }   
 

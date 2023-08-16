@@ -1,9 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using System.Text.Json;     
-
-namespace PilotLogbook;
+﻿namespace PilotLogbook;
 
 public partial class MainPage : ContentPage
 {
@@ -16,8 +11,6 @@ public partial class MainPage : ContentPage
     public MainPage()
 	{
 		InitializeComponent();
-
-
         if (Preferences.Default.Get("LocalDB", "") == "Local")
         {
             LocalDBBtn_Clicked(this, EventArgs.Empty);
@@ -77,7 +70,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    public static void Testing()
+    public void Testing()
     {
         //Create
         try
@@ -87,7 +80,7 @@ public partial class MainPage : ContentPage
         }
         catch (Exception ex)
         {
-            //Can't add to database
+            DisplayAlert("Error", "Can't create new entries in database!", "OK");
         }
 
         //Read
@@ -102,13 +95,12 @@ public partial class MainPage : ContentPage
             }
             catch (Exception)
             {
-                //Cant update
-                throw;
+                DisplayAlert("Error", "Can't update entries in database!", "OK");
             }
         }
         else
         {
-            //Cant read
+            DisplayAlert("Error", "Can't read entries from database!", "OK");
         }
 
         try
@@ -119,7 +111,7 @@ public partial class MainPage : ContentPage
         catch (Exception e)
         {
 
-            //Cant remove from database
+            DisplayAlert("Error", "Can't delete entries from database!", "OK");
         }
         MyDatabase.SaveChanges();
     }

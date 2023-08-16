@@ -23,8 +23,7 @@ public partial class CreateNewUser : ContentPage
         }
 		catch (Exception)
 		{
-
-			throw;
+			await DisplayAlert("Error", "Error adding user!", "OK");
 		}
     }
 }

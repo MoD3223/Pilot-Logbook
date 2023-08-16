@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace PilotLogbook;
 
 public partial class LoginDB : ContentPage
@@ -49,10 +47,10 @@ public partial class LoginDB : ContentPage
                 MainPage.SynthID = MainPage.MyDatabase.SynthethicFlights.OrderBy(s => s.SynthID).LastOrDefault()?.SynthID;
                 MainPage.MedicalID = MainPage.MyDatabase.MedicalCerts.OrderBy(m => m.MedicalID).LastOrDefault()?.MedicalID;
 
-                MainPage.LogbookID = MainPage.LogbookID == null ? 1 : MainPage.LogbookID++;
-                MainPage.RatingID = MainPage.RatingID == null ? 1 : MainPage.RatingID++;
-                MainPage.SynthID = MainPage.SynthID == null ? 1 : MainPage.SynthID++;
-                MainPage.MedicalID = MainPage.MedicalID == null ? 1 : MainPage.MedicalID;
+                MainPage.LogbookID = MainPage.LogbookID == null ? 1 : MainPage.LogbookID += 1;
+                MainPage.RatingID = MainPage.RatingID == null ? 1 : MainPage.RatingID += 1;
+                MainPage.SynthID = MainPage.SynthID == null ? 1 : MainPage.SynthID += 1;
+                MainPage.MedicalID = MainPage.MedicalID == null ? 1 : MainPage.MedicalID += 1;
 
 
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PilotLogbook
+﻿namespace PilotLogbook
 {
     public class Ratings
     {
@@ -12,5 +6,20 @@ namespace PilotLogbook
         public PilotID pilot { get; set; }
         public DateTime DateOfIssue { get; set; }
         public string CustomRating { get; set; }
+
+
+        public Ratings()
+        {
+
+        }
+
+        public Ratings(uint id, PilotID pilotid, DateTime date, string rating)
+        {
+            RatingID = id;
+            pilot = pilotid;
+            DateOfIssue = date;
+            CustomRating = rating;
+        }
+
     }
 }

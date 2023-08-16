@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PilotLogbook
+﻿namespace PilotLogbook
 {
     public class Certifications
     {
@@ -20,11 +13,25 @@ namespace PilotLogbook
             Private,
             Recreational,
             Commercial,
-            FlightInstructor, //Certified Flight Instructor (CFI)
-            InstrumentFlightInstructor, //Instrument Flight Instructor (CFII)
-            MultiEngineFlightInstructor, //Multi-Engine Instructor (MEI)
-            AirlineTransport, //Airline Transport Pilot (ATP)
-            Custom
+            Certified_Flight_Instructor, //Certified Flight Instructor (CFI)
+            Instrument_Flight_Instructor, //Instrument Flight Instructor (CFII)
+            Multi_Engine_Flight_Instructor, //Multi-Engine Instructor (MEI)
+            Airline_Transport_Pilot, //Airline Transport Pilot (ATP)
+            Other
+        }
+
+        public Certifications()
+        {
+
+        }
+
+        public Certifications(PilotID pilot, Grade recievedGrade, string customGrade, string number, DateTime dateOfIssue)
+        {
+            this.pilot = pilot;
+            RecievedGrade = recievedGrade;
+            CustomGrade = customGrade;
+            Number = number;
+            DateOfIssue = dateOfIssue;
         }
     }
 }

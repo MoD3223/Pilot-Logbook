@@ -6,7 +6,6 @@ public partial class ErrorPage : ContentPage
 	{
 		InitializeComponent();
 		DisplayAlert("Error", "Something went wrong, please try again", "OK");
-		Navigation.PushAsync(new MainPage());
         Navigation.PopToRootAsync();
     }
 
@@ -14,7 +13,6 @@ public partial class ErrorPage : ContentPage
 	{
 		InitializeComponent();
 		DisplayAlert("Error", errorMessage, "OK");
-		Navigation.PushAsync(new MainPage());
 		Navigation.PopToRootAsync();
 	}
 }
