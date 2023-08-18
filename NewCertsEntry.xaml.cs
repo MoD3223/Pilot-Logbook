@@ -26,7 +26,7 @@ public partial class NewCertsEntry : ContentPage
 		}
     }
 
-    private void btnCertsAddNew_Clicked(object sender, EventArgs e)
+    private async void btnCertsAddNew_Clicked(object sender, EventArgs e)
     {
 		string Number = EntryCertsNumber.Text;
 		DateTime Date = DatePickerCertsDate.Date;
@@ -50,9 +50,19 @@ public partial class NewCertsEntry : ContentPage
         }
 		else
 		{
-            MainPage.MyDatabase.Certifications.Add(new Certifications(id1, Grade, SGrade, Number, Date));
-            MainPage.MyDatabase.SaveChanges();
-			Navigation.PopToRootAsync();
+			try
+			{
+                MainPage.MyDatabase.Certifications.Add(new Certifications(id1, Grade, SGrade, Number, Date));
+                MainPage.MyDatabase.SaveChanges();
+                Navigation.PopToRootAsync();
+            }
+			catch (Exception)
+			{
+				MainPage.MyDatabase.ChangeTracker.Clear();
+                DisplayAlert("Error", "Make sure you put all data correctly", "OK");
+				await Navigation.PopToRootAsync();
+				
+			}
         }
 
     }

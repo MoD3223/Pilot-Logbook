@@ -4,9 +4,18 @@
              x:Class="PilotLogbook.NewSynthEntry"
              Title="NewSynthEntry">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid x:Name="SynthEntryGrid" RowDefinitions="*,*,*,*,*,*,*">
+            <Label Grid.Row="0" Text=" Date and Time " HorizontalTextAlignment="Center"/>
+            <DatePicker Grid.Row="1" x:Name="SynthEntryDate" HorizontalOptions="Center" FontAutoScalingEnabled="True"/>
+            <TimePicker Grid.Row="2" x:Name="SynthEntryTime" HorizontalOptions="Center" FontAutoScalingEnabled="True"/>
+            <Picker x:Name="PickerSynthEntry" Title="Select type of flight" Grid.Row="3" ItemsSource="{Binding Devices}" SelectedItem="{Binding SelectedDevice}" SelectedIndexChanged="PickerSynthEntry_SelectedIndexChanged" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+            <Label Grid.Row="4" Text=" Select flight duration " HorizontalTextAlignment="Center"/>
+            <HorizontalStackLayout Grid.Row="5" HorizontalOptions="Center">
+                <Entry x:Name="HoursEntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                <Entry x:Name="MinutesEntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                <Entry x:Name="SecondsEntry" Placeholder="Seconds" Keyboard="Numeric" WidthRequest="60" />
+            </HorizontalStackLayout>
+            <Button x:Name="btnSynthEntry" Text="Add new flight" Grid.Row="6" Clicked="btnSynthEntry_Clicked"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

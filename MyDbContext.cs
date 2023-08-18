@@ -54,6 +54,9 @@ namespace PilotLogbook
             mod.Entity<PilotID>().HasMany(p => p.Ratings).WithOne(l => l.pilot);
             mod.Entity<PilotID>().HasMany(p => p.Synths).WithOne(s => s.pilot);
             mod.Entity<PilotID>().HasMany(p => p.Med).WithOne(m => m.pilot);
+
+
+            mod.Entity<SyntheticLogbook>().Property(t => t.TotalTime).HasColumnType("TEXT"); //Changing from TimeSpan to TEXT because SQLite doesn't support TimeSpan values
         }
     }
 }

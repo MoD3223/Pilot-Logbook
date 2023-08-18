@@ -212,7 +212,7 @@ public partial class MainTabbedPage : TabbedPage
         MainGrid.Children.Add(AddNewLogbookEntry);
 
         delete = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Delete", IsVisible = false };
-        delete.Clicked += (s, e) => Delete_Clicked(MainGrid);
+        delete.Clicked += (s, e) => Delete_Clicked();
         MainGrid.SetRow(delete, row+1);
         MainGrid.SetColumn(delete, 1);
         MainGrid.Children.Add(delete);
@@ -333,7 +333,7 @@ public partial class MainTabbedPage : TabbedPage
                         }
                         else
                         {
-                            lbl.Text = item.CustomGrade;
+                            lbl.Text = item.CustomGrade.Replace("_"," ");
                         }
                         CertGrid.SetRow(lbl, row);
                         CertGrid.SetColumn(lbl, i);
@@ -570,44 +570,69 @@ public partial class MainTabbedPage : TabbedPage
         }
     }
 
-    async void Delete_Clicked(Grid views)
+    async void Delete_Clicked()
     {
-        int id = -1;
-        foreach (View item in views)
+        string id = "_";
+        Grid views = null;
+        if (CurrentPage is ContentPage con && con.Content is ScrollView sv)
         {
-            if (Grid.GetRow(item) == tappedRow && Grid.GetColumn(item) == 0)
-            {
-                if (item is Label l)
-                {
-                    id = Int32.Parse(l.Text);
-                    break;
-                }
-            }
+            views = sv.Content as Grid;
         }
-        if (id != -1)
+
+        if (views != null)
         {
-            bool result = await DisplayAlert("Confirmation", "Do you really want to delete this?", "Yes", "No");
-            if (views == MainGrid)
+            foreach (View item in views)
             {
-                if (result)
+                if (Grid.GetRow(item) == tappedRow && Grid.GetColumn(item) == 0 && item is Label l)
                 {
-                    var entity = MainPage.MyDatabase.Logbooks.First(l => l.LogbookID == id);
-                    MainPage.MyDatabase.Logbooks.Remove(entity);
-                    MainPage.MyDatabase.SaveChanges();
-                    Navigation.PopAsync(false);
-                    Navigation.PushAsync(new MainTabbedPage(id1));
+
+                        id = l.Text;
+                        break;
+                    
                 }
             }
-            else if (views == RatingsGrid)
+            if (id != "_")
             {
-                if (result)
+                bool result = await DisplayAlert("Confirmation", "Do you really want to delete this?", "Yes", "No");
+                if (views == MainGrid)
                 {
-                    var entity = MainPage.MyDatabase.Ratings.First(r => r.RatingID == id);
-                    MainPage.MyDatabase.Ratings.Remove(entity);
-                    MainPage.MyDatabase.SaveChanges();
-                    Navigation.PopAsync(false);
-                    Navigation.PushAsync(new MainTabbedPage(id1));
+                    if (result)
+                    {
+                        var entity = MainPage.MyDatabase.Logbooks.First(l => l.LogbookID == Int32.Parse(id));
+                        MainPage.MyDatabase.Logbooks.Remove(entity);
+                        MainPage.MyDatabase.SaveChanges();
+                        Navigation.PopAsync(false);
+                        Navigation.PushAsync(new MainTabbedPage(id1));
+                    }
                 }
+                else if (views == RatingsGrid)
+                {
+                    if (result)
+                    {
+                        var entity = MainPage.MyDatabase.Ratings.First(r => r.RatingID == Int32.Parse(id));
+                        MainPage.MyDatabase.Ratings.Remove(entity);
+                        MainPage.MyDatabase.SaveChanges();
+                        CurrentPage = Children[0];
+                        Navigation.PopAsync(false);
+                        Navigation.PushAsync(new MainTabbedPage(id1));
+                    }
+                }
+                else if (views == CertGrid)
+                {
+                    if (result)
+                    {
+                        var entity = MainPage.MyDatabase.Certifications.First(c => c.Number == id);
+                        MainPage.MyDatabase.Certifications.Remove(entity);
+                        MainPage.MyDatabase.SaveChanges();
+                        CurrentPage = Children[0];
+                        Navigation.PopAsync(false);
+                        Navigation.PushAsync(new MainTabbedPage(id1));
+                    }
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", "Could not find specified ID", "OK");
             }
         }
         else

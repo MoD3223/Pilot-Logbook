@@ -9,7 +9,7 @@ public partial class NewRatingsEntry : ContentPage
 		id1 = id;
 	}
 
-    private void btnAddRating_Clicked(object sender, EventArgs e)
+    private async void btnAddRating_Clicked(object sender, EventArgs e)
     {
 		uint ID = MainPage.RatingID.Value;
 		DateTime Date = RatingsEntryDate.Date;
@@ -22,10 +22,19 @@ public partial class NewRatingsEntry : ContentPage
 		}
 		else
 		{
-            MainPage.MyDatabase.Ratings.Add(new Ratings(ID, id1, Date, Rating));
-            MainPage.MyDatabase.SaveChanges();
-            MainPage.RatingID += 1;
-			Navigation.PopToRootAsync();
+			try
+			{
+                MainPage.MyDatabase.Ratings.Add(new Ratings(ID, id1, Date, Rating));
+                MainPage.MyDatabase.SaveChanges();
+                MainPage.RatingID += 1;
+                Navigation.PopToRootAsync();
+            }
+			catch (Exception)
+			{
+                MainPage.MyDatabase.ChangeTracker.Clear();
+                DisplayAlert("Error", "Make sure you put all data correctly", "OK");
+                await Navigation.PopToRootAsync();
+			}
         }
     }
 }
