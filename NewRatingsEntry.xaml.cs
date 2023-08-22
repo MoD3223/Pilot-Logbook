@@ -37,4 +37,11 @@ public partial class NewRatingsEntry : ContentPage
 			}
         }
     }
+
+    protected override bool OnBackButtonPressed()
+    {
+        Navigation.PopAsync();
+        Navigation.PopAsync();
+        return true;
+    }
 }

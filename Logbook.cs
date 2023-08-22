@@ -1,4 +1,4 @@
-﻿namespace PilotLogbook
+﻿        namespace PilotLogbook
 {
     internal class Logbook
     {
@@ -42,18 +42,8 @@
 
 
 
-        public Logbook(uint lid,PilotID pid, DateTime dept, DateTime arr, uint day = 0, uint night = 0, uint single = 0, uint multi = 0, DateTime date = default, string aircraft = null, string ident = null, string from = null, string to = null, TimeSpan? stick = null, string pilot = "Self", string second = null, bool cross = false, bool? engine = null, TimeSpan? dateTimePIC = null, TimeSpan? copilot = null, TimeSpan? dual = null, TimeSpan? ins = null, string? notes = null, TimeSpan? MultiTime = null, TimeSpan? NightTime = null, TimeSpan? IFRTime = null)
+        public Logbook(uint lid,PilotID pid, DateTime dept, DateTime arr,TimeSpan flightduration, uint day = 0, uint night = 0, uint single = 0, uint multi = 0, DateTime date = default, string aircraft = null, string ident = null, string from = null, string to = null, TimeSpan? stick = null, string pilot = "Self", string second = null, bool cross = false, bool? engine = null, TimeSpan? dateTimePIC = null, TimeSpan? copilot = null, TimeSpan? dual = null, TimeSpan? ins = null, string? notes = null, TimeSpan? MultiTime = null, TimeSpan? NightTime = null, TimeSpan? IFRTime = null)
         {
-            FlightDuration = ArrivalTime - DepartureTime;
-
-            if (stick > FlightDuration || MultiTime > FlightDuration || NightTime > FlightDuration || IFRTime > FlightDuration || dateTimePIC > FlightDuration || copilot > FlightDuration || dual > FlightDuration || ins > FlightDuration)
-            {
-                //TODO: Add error
-                //Error, none of these values can be higher than Flight Duration
-            }
-
-
-
             if (date == default)
             {
                 Date = DateTime.UtcNow;
@@ -67,6 +57,7 @@
             NotesAndEndorsements = notes;
             DepartureTime = dept;
             ArrivalTime = arr;
+            FlightDuration = flightduration;
             AircraftType = aircraft;
             AircraftIdent = ident;
             RouteFrom = from;

@@ -46,4 +46,11 @@ public partial class NewSynthEntry : ContentPage
             }
 		}
     }
+
+    protected override bool OnBackButtonPressed()
+    {
+        Navigation.PopAsync();
+        Navigation.PopAsync();
+        return true;
+    }
 }

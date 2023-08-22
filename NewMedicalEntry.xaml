@@ -4,9 +4,19 @@
              x:Class="PilotLogbook.NewMedicalEntry"
              Title="NewMedicalEntry">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid x:Name="MedicalEntryGrid" HorizontalOptions="Center" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*">
+            <Label Grid.Row="0" Text=" Date and Time " HorizontalTextAlignment="Center"/>
+            <DatePicker Grid.Row="1" x:Name="MedEntryDate" FontAutoScalingEnabled="True"/>
+            <TimePicker Grid.Row="2" x:Name="MedEntryTime" FontAutoScalingEnabled="True"/>
+            <Label Grid.Row="3" Text=" Medical Class " HorizontalTextAlignment="Center"/>
+            <Entry Grid.Row="4" x:Name="ClassEntry"/>
+            <Label Grid.Row="5" Text=" Flight date " HorizontalTextAlignment="Center"/>
+            <DatePicker Grid.Row="6" x:Name="MedFlightEntryDate" FontAutoScalingEnabled="True"/>
+            <TimePicker Grid.Row="7" x:Name="MedFlightEntryTime" FontAutoScalingEnabled="True"/>
+            <Label Grid.Row="8" Text=" Instrument flight date" HorizontalTextAlignment="Center"/>
+            <DatePicker Grid.Row="9" x:Name="MedInsFlightEntryDate" FontAutoScalingEnabled="True"/>
+            <TimePicker Grid.Row="10" x:Name="MedInsFlightEntryTime" FontAutoScalingEnabled="True"/>
+            <Button Grid.Row="11" x:Name="btnMedEntry" Text="Add new flight" Clicked="btnMedEntry_Clicked"/>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

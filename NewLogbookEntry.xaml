@@ -3,10 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PilotLogbook.NewLogbookEntry"
              Title="NewLogbookEntry">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView Orientation="Both" VerticalScrollBarVisibility="Always" HorizontalOptions="FillAndExpand">
+            <Grid x:Name="LogbookEntryGrid" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*" HorizontalOptions="Center">
+                <Label Text="Plane and flight information" Grid.Row="0"/>
+                <Entry x:Name="LogbookEntryMake" Grid.Row="1" Placeholder="Plane make"/>
+                <Entry x:Name="LogbookEntryModel" Grid.Row="2" Placeholder="Plane model"/>
+                <Entry x:Name="LogbookEntryIdent" Grid.Row="3" Placeholder="Ident"/>
+                <Entry x:Name="LogbookEntryRouteFrom" Grid.Row="4" Placeholder="Route FROM (ICAO code)" MaxLength="4"/>
+                <Entry x:Name="LogbookEntryRouteTo" Grid.Row="5" Placeholder="Route TO (ICAO code)" MaxLength="4"/>
+                <Label Text="Departure date" Grid.Row="6"/>
+                <DatePicker x:Name="LogbookEntryDeptDate" Grid.Row="7"/>
+                <TimePicker x:Name="LogbookEntryDeptTime" Grid.Row="8"/>
+                <Label Text="Arrival date" Grid.Row="9"/>
+                <DatePicker x:Name="LogbookEntryArrDate" Grid.Row="10"/>
+                <TimePicker x:Name="LogbookEntryArrTime" Grid.Row="11"/>
+                <Label Text="Pilots" Grid.Row="12"/>
+                <Entry x:Name="LogbookEntryPilotInCommand" Grid.Row="13" Placeholder="Pilot in command" Text="Self"/>
+                <Entry x:Name="LogbookEntrySecondInCommand" Grid.Row="14" Placeholder="Second in command"/>
+                <Label Text="Landings" Grid.Row="15"/>
+                <Entry x:Name="LogbookEntryDayLandings" Placeholder="Day landings" Keyboard="Numeric" Grid.Row="16"/>
+                <Entry x:Name="LogbookEntryNightLandings" Placeholder="Night landings" Keyboard="Numeric" Grid.Row="17"/>
+                <Entry x:Name="LogbookEntrySingleLandings" Placeholder="Single-engine landings" Keyboard="Numeric" Grid.Row="18"/>
+                <Entry x:Name="LogbookEntryMultiLandings" Placeholder="Multi-engine landings" Keyboard="Numeric" Grid.Row="19"/>
+                <Label Text="Engine type (OFF = Single-engine, ON = Multi-engine)" Grid.Row="20"/>
+                <Switch x:Name="LogbookEntryEngineSwitch" IsToggled="{Binding engine}" Grid.Row="21"/>
+                <Label Text="Stick flight time" Grid.Row="22"/>
+                <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="23">
+                    <Entry x:Name="HoursStickEntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                    <Entry x:Name="MinutesStickEntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                </HorizontalStackLayout>
+                <Label Text="Multi-pilot time" Grid.Row="24"/>
+                <HorizontalStackLayout Grid.Row="25" HorizontalOptions="Center">
+                    <Entry x:Name="HoursMultiPilotEntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                    <Entry x:Name="MinutesMultiPilotEntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                </HorizontalStackLayout>
+                <Label Text="Night flying time" Grid.Row="26"/>
+                <HorizontalStackLayout Grid.Row="27" HorizontalOptions="Center">
+                    <Entry x:Name="HoursNightEntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                    <Entry x:Name="MinutesNightEntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                </HorizontalStackLayout>
+                <Label Text="IFR flying time" Grid.Row="28"/>
+                <HorizontalStackLayout Grid.Row="29" HorizontalOptions="Center">
+                    <Entry x:Name="HoursIFREntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                    <Entry x:Name="MinutesIFREntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                </HorizontalStackLayout>
+                <Label Text="Pilot-In-Command flying time" Grid.Row="30"/>
+                <HorizontalStackLayout Grid.Row="31" HorizontalOptions="Center">
+                    <Entry x:Name="HoursPICEntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                    <Entry x:Name="MinutesPICEntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                </HorizontalStackLayout>
+                <Label Text="Co-Pilot flying time" Grid.Row="32"/>
+                <HorizontalStackLayout Grid.Row="33" HorizontalOptions="Center">
+                    <Entry x:Name="HoursCOPEntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                    <Entry x:Name="MinutesCOPEntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                </HorizontalStackLayout>
+                <Label Text="Dual pilot flying time" Grid.Row="34"/>
+                <HorizontalStackLayout Grid.Row="35" HorizontalOptions="Center">
+                    <Entry x:Name="HoursDualEntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                    <Entry x:Name="MinutesDualEntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                </HorizontalStackLayout>
+                <Label Text="Instructor flying time" Grid.Row="36"/>
+                <HorizontalStackLayout Grid.Row="37" HorizontalOptions="Center">
+                    <Entry x:Name="HoursInsEntry" Placeholder="Hours" Keyboard="Numeric" WidthRequest="60" />
+                    <Entry x:Name="MinutesInsEntry" Placeholder="Minutes" Keyboard="Numeric" WidthRequest="60" />
+                </HorizontalStackLayout>
+                <Label Text="Cross country" Grid.Row="38"/>
+                <Switch x:Name="LogbookEntryCrossSwitch" IsToggled="{Binding cross}" Grid.Row="39"/>
+                <Entry x:Name="LogbookEntryNotes" Placeholder="Additional notes and remarks" Grid.Row="40"/>
+                <Button x:Name="btnLogbookEntry" Text="Add new flight" Grid.Row="41" Clicked="btnLogbookEntry_Clicked"/>
+            </Grid>
+        </ScrollView>
 </ContentPage>

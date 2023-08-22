@@ -9,5 +9,21 @@
         public DateTime FlightDate{ get; set; }
         public DateTime InstrumentDate{ get; set; }
 
+
+
+        public MedicalCertificates()
+        {
+        }
+
+        public MedicalCertificates(uint medID,PilotID pid,DateTime medDate, string medClass, DateTime fliDate, DateTime insDate)
+        {
+            MedicalID = medID;
+            pilot = pid;
+            MedicalDate = medDate;
+            MedicalClass = medClass;
+            FlightDate = fliDate;
+            InstrumentDate = insDate;
+        }
+        
     }
 }
