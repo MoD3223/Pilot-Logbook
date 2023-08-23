@@ -9,7 +9,19 @@ public partial class ExternalDatabaseLogin : ContentPage
 	public static string Password;
 	public ExternalDatabaseLogin()
 	{
-		//TODO: Add fields with login/password etc then Navigate to LocalLoginDB
 		InitializeComponent();
 	}
+
+    private void btnTryExternalLogin_Clicked(object sender, EventArgs e)
+    {
+        MainPage.MyDatabase = null;
+        MainPage.IsLocal = false;
+        MainPage.MyDatabase = new MyDbContext();
+        DomainName = ExternalEntryDomain.Text;
+		PortNumber = uint.Parse(ExternalEntryPort.Text);
+		DatabaseName = ExternalEntryDatabase.Text;
+		Login = ExternalEntryLogin.Text;
+		Password = ExternalEntryPass.Text;
+		Navigation.PushAsync(new LoginDB());
+    }
 }

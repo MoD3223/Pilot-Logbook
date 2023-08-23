@@ -21,9 +21,14 @@ public partial class LogbookAndroid : ContentPage
 				VertStack.Children.Add(btn);
 			}
 		}
-		//Button DesktopView = new Button() { Text = "Switch to desktop view", BackgroundColor = Colors.CornflowerBlue, BindingContext = id };
-  //      DesktopView.Clicked += DesktopView_Clicked;
-  //      VertStack.Children.Add(DesktopView);
+		Button AddNewLogbookAndroid = new Button() { Text = "Add new logbook", BackgroundColor = Colors.CornflowerBlue, BindingContext = id };
+        AddNewLogbookAndroid.Clicked += AddNewLogbookAndroid_Clicked;
+		VertStack.Children.Add(AddNewLogbookAndroid);
+    }
+
+    private void AddNewLogbookAndroid_Clicked(object sender, EventArgs e)
+    {
+		Navigation.PushAsync(new NewLogbookEntry(id));
     }
 
     async void Button_Clicked(object sender, EventArgs e)
@@ -33,14 +38,4 @@ public partial class LogbookAndroid : ContentPage
 			await Navigation.PushAsync(new LogPreviewAndroid(log));
 		}
 	}
-
-	//async void DesktopView_Clicked(object sender, EventArgs e)
-	//{
-	//	if (sender is Button btn && btn.BindingContext is PilotID id)
-	//	{
-	//		//TODO: fix this later someday
-	//		//forgot tabbed view doesn't work on android
-	//		await Navigation.PushAsync(new NewRatingsEntry(id));
-	//	}
-	//}
 }

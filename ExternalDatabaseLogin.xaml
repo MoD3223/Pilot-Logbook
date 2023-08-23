@@ -3,10 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PilotLogbook.ExternalDatabaseLogin"
              Title="ExternalDatabaseLogin">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout HorizontalOptions="Center">
+        <Label Text="Domain name"/>
+        <Entry x:Name="ExternalEntryDomain"/>
+        <Label Text="Port number"/>
+        <Entry x:Name="ExternalEntryPort" Keyboard="Numeric"/>
+        <Label Text="Database name"/>
+        <Entry x:Name="ExternalEntryDatabase"/>
+        <Label Text="Login"/>
+        <Entry x:Name="ExternalEntryLogin"/>
+        <Label Text="Password"/>
+        <Entry x:Name="ExternalEntryPass"/>
+        <Button x:Name="btnTryExternalLogin" Text="Connect" Clicked="btnTryExternalLogin_Clicked"/>
     </VerticalStackLayout>
 </ContentPage>

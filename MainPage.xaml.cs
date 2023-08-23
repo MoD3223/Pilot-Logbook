@@ -42,10 +42,6 @@ public partial class MainPage : ContentPage
 
     private async void ExternalDBBtn_Clicked(object sender, EventArgs e)
     {
-        MyDatabase = null;
-        IsLocal = false;
-        //TODO: This should be removed, add it in the database options page since we need to provide login/password for external database
-        //MyDatabase = new MyDbContext();
         if (Preferences.Default.Get("Saved", false))
         {
             Preferences.Default.Set("LocalDB", "External");
