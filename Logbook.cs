@@ -79,5 +79,25 @@
             SingleEngineLand = single;
             MultiEngineLand = multi;
         }
+
+        public Logbook(uint ID,TimeSpan flightduration,TimeSpan stick, TimeSpan multipilot, TimeSpan ifr, TimeSpan nightly, TimeSpan pic, TimeSpan cop, TimeSpan dual, TimeSpan ins, uint day, uint night, uint single, uint multi)
+        {
+            LogbookID = ID;
+            FlightDuration = flightduration;
+            StickTime = stick;
+            MultiPilotTime = multipilot;
+            IFRFlyingTime = ifr;
+            NightFlyingTime = nightly;
+            PIC = pic;
+            CoPilot = cop;
+            Dual = dual;
+            Instructor = ins;
+            Day = day;
+            Night = night;
+            SingleEngineLand = single;
+            MultiEngineLand = multi;
+        }
+
+
     }
 }

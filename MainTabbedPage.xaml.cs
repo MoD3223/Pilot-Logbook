@@ -13,6 +13,24 @@ public partial class MainTabbedPage : TabbedPage
     Button delete;
     Button MobileView;
     PilotID id1;
+
+    TimeSpan TotalFlightDuration;
+    TimeSpan TotalStickTime;
+    TimeSpan TotalMultiPilot;
+    TimeSpan TotalIFRTime;
+    TimeSpan TotalNighttime;
+    TimeSpan TotalPICTime;
+    TimeSpan TotalCOPTime;
+    TimeSpan TotalDualTime;
+    TimeSpan TotalInsTime;
+    uint TotalDayLand;
+    uint TotalNightLand;
+    uint TotalSingleEngineLand;
+    uint TotalMultiEngineLand;
+
+
+
+
     public MainTabbedPage(PilotID ID)
     {
         InitializeComponent();
@@ -29,13 +47,30 @@ public partial class MainTabbedPage : TabbedPage
     {
 
         var LogbooksList = new List<Logbook>();
+        
+
         foreach (var item in MainPage.MyDatabase.Logbooks)
         {
             if (id1 == item.pilot)
             {
                 LogbooksList.Add(item);
+                TotalFlightDuration += item.FlightDuration;
+                TotalStickTime += item.StickTime.Value;
+                TotalMultiPilot += item.MultiPilotTime.Value;
+                TotalIFRTime += item.IFRFlyingTime.Value;
+                TotalNighttime += item.NightFlyingTime.Value;
+                TotalPICTime += item.PIC.Value;
+                TotalCOPTime += item.CoPilot.Value;
+                TotalDualTime += item.Dual.Value;
+                TotalInsTime += item.Instructor.Value;
+                TotalNightLand += item.Night;
+                TotalDayLand += item.Day;
+                TotalSingleEngineLand += item.SingleEngineLand;
+                TotalMultiEngineLand += item.MultiEngineLand;
             }
         }
+        LogbooksList.Add(new Logbook());
+        LogbooksList.Add(new Logbook(uint.MaxValue,TotalFlightDuration, TotalStickTime, TotalMultiPilot, TotalIFRTime, TotalNighttime, TotalPICTime, TotalCOPTime, TotalDualTime, TotalInsTime, TotalDayLand, TotalNightLand, TotalSingleEngineLand, TotalMultiEngineLand));
         TapGestureRecognizer tap = new TapGestureRecognizer();
         tap.Tapped += (s, e) => OnTapped(s, e, this.MainGrid);
         MainGrid.AddRowDefinition(new RowDefinition(GridLength.Auto));
@@ -58,12 +93,30 @@ public partial class MainTabbedPage : TabbedPage
                 switch (i)
                 {
                     case 0:
-                        lbl.Text = item.LogbookID.ToString();
+                        if (item.LogbookID == 0)
+                        {
+                            lbl.Text = "";
+                        }
+                        else if (item.LogbookID == uint.MaxValue)
+                        {
+                            lbl.Text = "Total:";
+                        }
+                        else
+                        {
+                            lbl.Text = item.LogbookID.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
                     case 1:
-                        lbl.Text = item.Date.ToString();
+                        if (item.Date == DateTime.MinValue)
+                        {
+                            lbl.Text = string.Empty;
+                        }
+                        else
+                        {
+                            lbl.Text = item.Date.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
@@ -88,7 +141,14 @@ public partial class MainTabbedPage : TabbedPage
                         MainGrid.SetColumn(lbl, i);
                         break;
                     case 8:
-                        lbl.Text = item.FlightDuration.ToString();
+                        if (item.LogbookID == 0)
+                        {
+                            lbl.Text = "";
+                        }
+                        else
+                        {
+                            lbl.Text = item.FlightDuration.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
@@ -104,32 +164,74 @@ public partial class MainTabbedPage : TabbedPage
                         break;
 
                     case 6:
-                        lbl.Text = item.DepartureTime.ToString();
+                        if (item.Date == DateTime.MinValue)
+                        {
+                            lbl.Text = string.Empty;
+                        }
+                        else
+                        {
+                            lbl.Text = item.DepartureTime.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
                     case 7:
-                        lbl.Text = item.ArrivalTime.ToString();
+                        if (item.Date == DateTime.MinValue)
+                        {
+                            lbl.Text = string.Empty;
+                        }
+                        else
+                        {
+                            lbl.Text = item.ArrivalTime.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
                     case 11:
-                        lbl.Text = item.Day.ToString();
+                        if (item.LogbookID == 0)
+                        {
+                            lbl.Text = "";
+                        }
+                        else
+                        {
+                            lbl.Text = item.Day.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
                     case 12:
-                        lbl.Text = item.Night.ToString();
+                        if (item.LogbookID == 0)
+                        {
+                            lbl.Text = "";
+                        }
+                        else
+                        {
+                            lbl.Text = item.Night.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
                     case 13:
-                        lbl.Text = item.SingleEngineLand.ToString();
+                        if (item.LogbookID == 0)
+                        {
+                            lbl.Text = "";
+                        }
+                        else
+                        {
+                            lbl.Text = item.SingleEngineLand.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
                     case 14:
-                        lbl.Text = item.MultiEngineLand.ToString();
+                        if (item.LogbookID == 0)
+                        {
+                            lbl.Text = "";
+                        }
+                        else
+                        {
+                            lbl.Text = item.MultiEngineLand.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
@@ -186,7 +288,14 @@ public partial class MainTabbedPage : TabbedPage
                         MainGrid.SetColumn(lbl, i);
                         break;
                     case 24:
-                        lbl.Text = item.CrossCountry.ToString();
+                        if (item.LogbookID == 0 || item.LogbookID == uint.MaxValue)
+                        {
+                            lbl.Text = "";
+                        }
+                        else
+                        {
+                            lbl.Text = item.CrossCountry.ToString();
+                        }
                         MainGrid.SetRow(lbl, row);
                         MainGrid.SetColumn(lbl, i);
                         break;
@@ -199,11 +308,18 @@ public partial class MainTabbedPage : TabbedPage
                         break;
                 }
                 lbl.HorizontalTextAlignment = TextAlignment.Center;
-                lbl.GestureRecognizers.Add(tap);
+                if (item.LogbookID != 0 && item.LogbookID != uint.MaxValue)
+                {
+                    lbl.GestureRecognizers.Add(tap);
+                }
                 MainGrid.Children.Add(lbl);
             }
 
         }
+
+
+
+
 
         AddNewLogbookEntry = new Button() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, Text = "Add new entry" };
         AddNewLogbookEntry.Clicked += AddNewLogbookEntry_Clicked;
@@ -329,11 +445,11 @@ public partial class MainTabbedPage : TabbedPage
                     case 1:
                         if (item.RecievedGrade != Certifications.Grade.Other)
                         {
-                            lbl.Text = item.RecievedGrade.ToString();
+                            lbl.Text = item.CustomGrade.Replace("_", " ");
                         }
                         else
                         {
-                            lbl.Text = item.CustomGrade.Replace("_"," ");
+                            lbl.Text = item.RecievedGrade.ToString();
                         }
                         CertGrid.SetRow(lbl, row);
                         CertGrid.SetColumn(lbl, i);
@@ -393,7 +509,7 @@ public partial class MainTabbedPage : TabbedPage
                         SynthGrid.SetColumn(lbl, i);
                         break;
                     case 1:
-                        lbl.Text = item.type.ToString();
+                        lbl.Text = item.type.ToString().Replace("_"," ");
                         SynthGrid.SetRow(lbl, row);
                         SynthGrid.SetColumn(lbl, i);
                         break;

@@ -5,57 +5,57 @@
              Title="LogPreviewAndroid">
     <ScrollView Orientation="Both">
         <VerticalStackLayout x:Name="VertStack">
-            <Label Text="ID" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblID" HorizontalTextAlignment="Center"/>
-            <Label Text="Date" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="ID" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblID" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Date" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblDate" HorizontalTextAlignment="Center"/>
-            <Label Text="Make/Model" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblMake" HorizontalTextAlignment="Center"/>
-            <Label Text="Ident" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Make/Model" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblMake" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Ident" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblIdent" HorizontalTextAlignment="Center"/>
-            <Label Text="Route FROM" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblFrom" HorizontalTextAlignment="Center"/>
-            <Label Text="Route TO" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Route FROM" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblFrom" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Route TO" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblTo" HorizontalTextAlignment="Center"/>
-            <Label Text="Departure date" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblDepartureTime" HorizontalTextAlignment="Center"/>
-            <Label Text="Arrival date" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Departure date" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblDepartureTime" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Arrival date" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblArrivalTime" HorizontalTextAlignment="Center"/>
-            <Label Text="Flight Duration" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblFlightDuration" HorizontalTextAlignment="Center"/>
-            <Label Text="Pilot in command" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Flight Duration" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblFlightDuration" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Pilot in command" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblPilot" HorizontalTextAlignment="Center"/>
-            <Label Text="Second in command" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblSecondPilot" HorizontalTextAlignment="Center"/>
-            <Label Text="Day landings" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Second in command" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblSecondPilot" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Day landings" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblDayLand" HorizontalTextAlignment="Center"/>
-            <Label Text="Night landings" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblNightLand" HorizontalTextAlignment="Center"/>
-            <Label Text="Single-engine landings" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Night landings" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblNightLand" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Single-engine landings" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblSingleEngine" HorizontalTextAlignment="Center"/>
-            <Label Text="Multi-Engine landings" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblMultiEngine" HorizontalTextAlignment="Center"/>
-            <Label Text="Engine Type" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Multi-Engine landings" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblMultiEngine" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Engine Type" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblEngine" HorizontalTextAlignment="Center"/>
-            <Label Text="Stick time" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblStick" HorizontalTextAlignment="Center"/>
-            <Label Text="Multi-pilot time" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Stick time" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblStick" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Multi-pilot time" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblMultiPilot" HorizontalTextAlignment="Center"/>
-            <Label Text="Night flying time" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblNightFly" HorizontalTextAlignment="Center"/>
-            <Label Text="IFR Flying time" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Night flying time" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblNightFly" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="IFR Flying time" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblIFRFly" HorizontalTextAlignment="Center"/>
-            <Label Text="Pilot-In-Command time" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblPICFly" HorizontalTextAlignment="Center"/>
-            <Label Text="Co-Pilot time" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Pilot-In-Command time" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblPICFly" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Co-Pilot time" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblCOPFly" HorizontalTextAlignment="Center"/>
-            <Label Text="Dual pilot time" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblDualTime" HorizontalTextAlignment="Center"/>
-            <Label Text="Instructor time" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Dual pilot time" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblDualTime" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Instructor time" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblInsTime" HorizontalTextAlignment="Center"/>
-            <Label Text="Cross country" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
-            <Label x:Name="lblCross" HorizontalTextAlignment="Center"/>
-            <Label Text="Additional notes" HorizontalTextAlignment="Center" BackgroundColor="Blue"/>
+            <Label Text="Cross country" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label x:Name="lblCross" HorizontalTextAlignment="Center" BackgroundColor="AliceBlue" TextColor="Black"/>
+            <Label Text="Additional notes" HorizontalTextAlignment="Center"/>
             <Label x:Name="lblNotes" HorizontalTextAlignment="Center"/>
         </VerticalStackLayout>
     </ScrollView>
