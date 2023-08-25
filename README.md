@@ -19,4 +19,6 @@ Pilot Logbook is desktop application made to help pilots to track digital record
 - Flight notes
 - Offline support
 
+## Installation
+(Coming Soon!)
 </p>
