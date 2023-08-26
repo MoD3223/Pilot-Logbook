@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PilotLogbook.LoginDB"
-             Title="Local Database Login">
+             Title="Local database login">
     <VerticalStackLayout VerticalOptions="Center" Spacing="10" x:Name="LoginDBMainStack">
         <Label 
             Text="Choose account to login"

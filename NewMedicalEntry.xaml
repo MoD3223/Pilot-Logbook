@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PilotLogbook.NewMedicalEntry"
-             Title="NewMedicalEntry">
+             Title="New medical certificate entry">
     <VerticalStackLayout>
         <Grid x:Name="MedicalEntryGrid" HorizontalOptions="Center" RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*">
             <Label Grid.Row="0" Text=" Date and Time " HorizontalTextAlignment="Center"/>
