@@ -8,6 +8,7 @@ A digital logbook for pilots to track their flights and aviation experience
 
 - [Overview](#overview)
 - [Features](#features)
+- [Requirements](#requirements)
 - [Installation](#installation)
 
 ## Overview
@@ -19,6 +20,9 @@ Pilot Logbook is desktop application made to help pilots to track digital record
 - Flight notes
 - Offline support
 
+## Requirements
+Windows 10 1809 or newer (Win 11 is supported too!)
+
 ## Installation
-(Coming Soon!)
+Download the lastest [release](https://github.com/MoD3223/Pilot-Logbook/releases/tag/Release) from there and unpack. After that just run PilotLogbook executable.
 </p>
